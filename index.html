@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg">
+    <link rel="shortcut icon" href="assets/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="canonical" href="https://spinhook.ir">
+    <link rel="manifest" href="site.webmanifest">
+    <title>SpinHook: A Hyper-Casual Orbit Arcade Game</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="SpinHook">
+    <meta name="description" content="SpinHook is a fast-paced hyper-casual orbit arcade game where you launch, swing, and hook between rotating orbits to survive, earn points, and beat your personal best.">
+    <meta name="author" content="Sepand Haghighi">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="SpinHook: A Hyper-Casual Orbit Arcade Game">
+    <meta property="og:description" content="SpinHook is a fast-paced hyper-casual orbit arcade game where you launch, swing, and hook between rotating orbits to survive, earn points, and beat your personal best.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://spinhook.ir">
+    <meta property="og:image" content="https://spinhook.ir/assets/og-preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SpinHook: A Hyper-Casual Orbit Arcade Game">
+    <meta name="twitter:description" content="SpinHook is a fast-paced hyper-casual orbit arcade game where you launch, swing, and hook between rotating orbits to survive, earn points, and beat your personal best.">
+    <meta name="twitter:image" content="https://spinhook.ir/assets/og-preview.png">
+    <meta name="theme-color" content="#050510">
+    <script src="libs/tailwindcss.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <script src="libs/phaser.min.js"></script>
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body class="w-screen h-screen overflow-hidden flex justify-center items-center m-0 p-0">
+    <div class="relative w-screen h-screen overflow-hidden bg-[#050510]">
+        <div id="game-container" class="w-full h-full"></div>
+        <div id="hud-overlay" class="absolute top-0 left-0 w-full p-6 flex justify-between items-start pointer-events-none hidden z-10">
+            <div class="flex flex-col">
+                <span class="text-xs text-[#00ffcc]/60 uppercase tracking-widest arcade-font">Active Score</span>
+                <span id="hud-score" class="text-3xl font-black text-[#00ffcc] neon-glow-cyan">0</span>
+            </div>
+            <div class="flex flex-col items-end">
+                <span class="text-xs text-[#ff006e]/60 uppercase tracking-widest arcade-font">Personal Best</span>
+                <span id="hud-high-score" class="text-3xl font-black text-[#ff006e] neon-glow-pink">0</span>
+            </div>
+        </div>
+        <div id="menu-overlay" class="absolute inset-0 bg-[#03030d]/85 backdrop-blur-md flex flex-col justify-center items-center p-6 text-center z-20 transition-all duration-300">
+            <h1 class="text-4xl md:text-6xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-[#00ffcc] to-[#0099ff] uppercase neon-glow-cyan mb-2">
+                SPINHOOK
+            </h1>
+            <p class="text-xs md:text-sm text-[#00ffcc]/60 tracking-widest uppercase arcade-font mb-8">
+                A Hyper-Casual Orbit Arcade Game
+            </p>
+            
+            <button id="play-btn" class="px-8 py-3 bg-gradient-to-r from-[#00ffcc] to-[#0099ff] hover:from-[#00e6b8] hover:to-[#0088ee] text-[#03030d] font-bold tracking-widest rounded-lg shadow-[0_0_20px_rgba(0,255,204,0.3)] transition transform hover:scale-105 active:scale-95 uppercase mb-6 text-sm">
+                PLAY
+            </button>
+
+            <div class="border border-[#1a1a3a] rounded-lg p-4 bg-[#080816]/50 max-w-sm">
+                <p class="text-xs text-[#00ffcc]/80 leading-relaxed arcade-font">
+                    <span class="text-[#ff006e] font-bold">HOW TO PLAY:</span>
+                    Click or tap anywhere on the screen to launch your hook.
+                    Time each launch carefully and attach to the next rotating orbit.
+                    Keep swinging to survive and earn a higher score.
+                </p>
+            </div>
+        </div>
+        <div id="gameover-overlay" class="absolute inset-0 bg-[#03030d]/90 backdrop-blur-md flex flex-col justify-center items-center p-6 text-center z-20 hidden transition-all duration-300">
+            <h2 class="text-3xl md:text-5xl font-black tracking-widest text-[#ff006e] neon-glow-pink uppercase mb-1">
+                GAME OVER
+            </h2>
+            <p class="text-xs text-white/40 tracking-widest uppercase arcade-font mb-8">
+                Your hook missed the next orbit.
+            </p>
+
+            <div class="flex gap-12 mb-8">
+                <div class="flex flex-col items-center">
+                    <span class="text-[10px] text-white/50 tracking-wider uppercase arcade-font">Score</span>
+                    <span id="final-score" class="text-4xl font-black text-[#00ffcc] neon-glow-cyan">0</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <span class="text-[10px] text-white/50 tracking-wider uppercase arcade-font">Best</span>
+                    <span id="record-score" class="text-4xl font-black text-[#ff006e] neon-glow-pink">0</span>
+                </div>
+            </div>
+
+            <button id="retry-btn" class="px-8 py-3 border border-[#ff006e] text-[#ff006e] font-bold tracking-widest rounded-lg hover:bg-[#ff006e]/10 transition transform hover:scale-105 active:scale-95 uppercase text-sm">
+                PLAY AGAIN
+            </button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
