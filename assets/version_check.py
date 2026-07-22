@@ -18,10 +18,10 @@ SECURITY_ITEMS = ["| {0}           | :white_check_mark: |", "| < {0}         | :
 SERVICE_WORKER_ITEMS = ["spinhook-v{0}"]
 
 FILES = {
-    "index.html": INDEX_ITEMS,
+    #"index.html": INDEX_ITEMS,
     "CHANGELOG.md": CHANGELOG_ITEMS,
     "SECURITY.md": SECURITY_ITEMS,
-    "service-worker.js": SERVICE_WORKER_ITEMS,
+    #"service-worker.js": SERVICE_WORKER_ITEMS,
     os.path.join(
         ".github",
         "ISSUE_TEMPLATE",
