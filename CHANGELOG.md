@@ -14,4 +14,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 [Unreleased]: https://github.com/sepandhaghighi/spinhook/compare/v0.1...main
-[0.1]: https://github.com/sepandhaghighi/spinhook/compare/157a4dd...v0.1
+[0.1]: https://github.com/sepandhaghighi/spinhook/compare/65df667...v0.1
