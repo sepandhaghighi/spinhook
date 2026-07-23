@@ -1,4 +1,5 @@
 <div align="center">
+    <img src="https://github.com/sepandhaghighi/spinhook/raw/main/assets/logo.png" alt="SpinHook Logo" width="300">
     <h1>🎮 SpinHook: A Hyper-Casual Orbit Arcade Game</h1>
     <br/>
     <a href="https://spinhook.ir"><img src="https://img.shields.io/badge/demo-spinhook.ir-green.svg"></a>
