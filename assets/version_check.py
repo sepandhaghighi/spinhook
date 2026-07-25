@@ -16,12 +16,14 @@ CHANGELOG_ITEMS = [
 ISSUE_TEMPLATE_ITEMS = ["- SpinHook {0}"]
 SECURITY_ITEMS = ["| {0}           | :white_check_mark: |", "| < {0}         | :x:                |"]
 SERVICE_WORKER_ITEMS = ["spinhook-v{0}"]
+SCRIPT_ITEMS = ['GAME_VERSION = "v{0}"']
 
 FILES = {
     #"index.html": INDEX_ITEMS,
     "CHANGELOG.md": CHANGELOG_ITEMS,
     "SECURITY.md": SECURITY_ITEMS,
     #"service-worker.js": SERVICE_WORKER_ITEMS,
+    "script.js": SCRIPT_ITEMS,
     os.path.join(
         ".github",
         "ISSUE_TEMPLATE",

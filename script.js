@@ -1,3 +1,4 @@
+const GAME_VERSION = "v0.1";
 let currentScore = 0;
 let sessionHighScore = Number(localStorage.getItem("spinhookBestScore")) || 0;
 
@@ -332,3 +333,5 @@ document.getElementById('retry-btn').addEventListener('click', () => {
 window.addEventListener('resize', () => {
     game.scale.resize(window.innerWidth, window.innerHeight);
 });
+
+document.getElementById("game-version").innerText = GAME_VERSION;
