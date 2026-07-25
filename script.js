@@ -1,4 +1,4 @@
-const GAME_VERSION = "v0.1";
+const SPINHOOK_VERSION = "v0.1";
 let currentScore = 0;
 let sessionHighScore = Number(localStorage.getItem("spinhookBestScore")) || 0;
 
@@ -334,4 +334,4 @@ window.addEventListener('resize', () => {
     game.scale.resize(window.innerWidth, window.innerHeight);
 });
 
-document.getElementById("game-version").innerText = GAME_VERSION;
+document.getElementById("game-version").innerText = SPINHOOK_VERSION;
