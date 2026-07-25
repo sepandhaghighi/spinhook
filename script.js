@@ -193,7 +193,7 @@ class GameScene extends Phaser.Scene {
             this.player.x < -100 ||
             this.player.x > this.scale.width + 100
         ) {
-            this.triggerCrash();
+            this.gameOver();
         }
     }
 
@@ -267,7 +267,7 @@ class GameScene extends Phaser.Scene {
         this.orbitGraphics.strokeCircle(this.nextOrbit.x, this.nextOrbit.y, this.nextOrbit.radius);
     }
 
-    triggerCrash() {
+    gameOver() {
         this.playerState = PlayerState.DEAD;
         this.player.setVelocity(0, 0);
         this.trailEmitter.stop();
