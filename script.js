@@ -182,7 +182,7 @@ class GameScene extends Phaser.Scene {
             this.nextOrbit.y
         );
         if (Math.abs(distanceToTarget - this.nextOrbit.radius) < 8) {
-            this.connectProbe();
+            this.attachToOrbit();
         }
         const camMinY = this.cameras.main.scrollY;
         const camMaxY = camMinY + this.scale.height;
@@ -214,7 +214,7 @@ class GameScene extends Phaser.Scene {
         }
     }
 
-    connectProbe() {
+    attachToOrbit() {
         this.player.setVelocity(0, 0);
         this.trailEmitter.stop();
         this.burstEmitter.explode(35, this.player.x, this.player.y);

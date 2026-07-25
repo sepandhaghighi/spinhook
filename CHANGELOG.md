@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - Version label
+### Changed
+- `connectProbe` method renamed to `attachToOrbit`
 ## [0.1] - 2026-07-24
 ### Added
 - Initial public release of SpinHook
