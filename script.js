@@ -3,6 +3,96 @@ let currentScore = 0;
 let currentUsername = "";
 let playStartTime = null;
 
+const Leaderboard = {
+
+    STORAGE_KEY: "spinhookLeaderboard",
+
+
+    getAll() {
+        return JSON.parse(localStorage.getItem(this.STORAGE_KEY)) || [];
+    },
+
+
+    save(data) {
+        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
+    },
+
+
+    sanitizeUsername(username) {
+        return username.replace(/[^a-zA-Z0-9]/g, "").substring(0, 12);
+    },
+
+
+    getPlayer(username) {
+        return this.getAll().find(player => player.username === username);
+    },
+
+
+    startSession(username) {
+        let players = this.getAll();
+
+        let player =
+            players.find(p => p.username === username);
+
+        if (!player) {
+            player = {
+
+                username: username,
+
+                numberOfPlays: 0,
+
+                bestRecord: 0,
+
+                totalPlayTime: 0,
+
+                bestRecordDate: null
+            };
+
+            players.push(player);
+
+        }
+
+        player.numberOfPlays++;
+
+        this.save(players);
+
+        return Date.now();
+
+    },
+
+
+    finishSession(
+        username,
+        score,
+        startTime
+    ) {
+
+        let players = this.getAll();
+        let player =
+            players.find(p => p.username === username);
+
+        if (!player)
+            return;
+
+        const sessionTime =Math.floor((Date.now() - startTime) / 1000);
+
+        player.totalPlayTime += sessionTime;
+
+        if (score > player.bestRecord) {
+            player.bestRecord = score;
+            player.bestRecordDate =
+                new Date().toISOString();
+        }
+        this.save(players);
+    },
+
+
+    getRanking() {
+        return this.getAll().sort((a, b) => b.bestRecord - a.bestRecord);
+    }
+
+};
+
 const UI = {
     updateScores: (score) => {
         currentScore = score;
