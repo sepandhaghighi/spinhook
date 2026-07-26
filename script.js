@@ -466,4 +466,17 @@ function renderLeaderboard(){
     }).join("");
 }
 
+document.getElementById("leaderboard-btn").addEventListener("click", ()=>{
+    renderLeaderboard();
+    const overlay = document.getElementById("leaderboard-overlay");
+    overlay.classList.remove("hidden");
+    overlay.classList.add("flex");
+});
+
+document.getElementById("close-leaderboard").addEventListener("click",()=>{
+    const overlay = document.getElementById("leaderboard-overlay");
+    overlay.classList.add("hidden");
+    overlay.classList.remove("flex");
+});
+
 document.getElementById("game-version").innerText = SPINHOOK_VERSION;
