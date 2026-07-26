@@ -356,6 +356,7 @@ class GameScene extends Phaser.Scene {
     }
 
     gameOver() {
+        Leaderboard.finishSession(currentUsername, this.score, playStartTime);
         this.playerState = PlayerState.DEAD;
         this.player.setVelocity(0, 0);
         this.trailEmitter.stop();
