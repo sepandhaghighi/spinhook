@@ -49,13 +49,17 @@
             <p class="text-xs md:text-sm text-[#00ffcc]/60 tracking-widest uppercase arcade-font mb-8">
                 A Hyper-Casual Orbit Arcade Game
             </p>
-            <input id="username-input" maxlength="12" placeholder="ENTER USERNAME" class="mb-4 px-4 py-3 bg-[#080816] border border-[#00ffcc]/40 text-[#00ffcc] text-center rounded-lg arcade-font"/>
-            <button id="play-btn" class="px-8 py-3 bg-gradient-to-r from-[#00ffcc] to-[#0099ff] hover:from-[#00e6b8] hover:to-[#0088ee] text-[#03030d] font-bold tracking-widest rounded-lg shadow-[0_0_20px_rgba(0,255,204,0.3)] transition transform hover:scale-105 active:scale-95 uppercase mb-6 text-sm">
-                PLAY
-            </button>
-            <button id="leaderboard-btn" class="mt-4 text-[#00ffcc] text-xs tracking-widest uppercase">
-                LEADERBOARD
-            </button>
+            <div class="flex flex-col items-center gap-4 mb-6">
+                <input id="username-input" type="text" maxlength="12" placeholder="ENTER USERNAME" class="w-64 px-4 py-3 bg-[#080816] border border-[#00ffcc]/40 rounded-lg text-[#00ffcc] text-center arcade-font uppercase placeholder:text-[#00ffcc]/40 focus:outline-none focus:border-[#00ffcc] focus:shadow-[0_0_20px_rgba(0,255,204,0.25)] transition"/>
+
+                <button id="play-btn" class="w-64 px-8 py-3 bg-gradient-to-r from-[#00ffcc] to-[#0099ff] hover:from-[#00e6b8] hover:to-[#0088ee] text-[#03030d] font-bold tracking-widest rounded-lg shadow-[0_0_20px_rgba(0,255,204,0.3)] transition transform hover:scale-105 active:scale-95 uppercase text-sm">
+                    PLAY
+                </button>
+
+                <button id="leaderboard-btn" class="w-64 px-8 py-3 border border-[#00ffcc] text-[#00ffcc] font-bold tracking-widest rounded-lg hover:bg-[#00ffcc]/10 hover:shadow-[0_0_18px_rgba(0,255,204,0.2)] transition transform hover:scale-105 active:scale-95 uppercase text-sm">
+                    🏆 LEADERBOARD
+                </button>
+            </div>
 
             <div class="border border-[#1a1a3a] rounded-lg p-4 bg-[#080816]/50 max-w-sm">
                 <p class="text-xs text-[#00ffcc]/80 leading-relaxed arcade-font">
