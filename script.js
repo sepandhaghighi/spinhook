@@ -1,4 +1,4 @@
-const GAME_VERSION = "v0.1";
+const SPINHOOK_VERSION = "v0.1";
 let currentScore = 0;
 let sessionHighScore = Number(localStorage.getItem("spinhookBestScore")) || 0;
 
@@ -182,7 +182,7 @@ class GameScene extends Phaser.Scene {
             this.nextOrbit.y
         );
         if (Math.abs(distanceToTarget - this.nextOrbit.radius) < 8) {
-            this.connectProbe();
+            this.attachToOrbit();
         }
         const camMinY = this.cameras.main.scrollY;
         const camMaxY = camMinY + this.scale.height;
@@ -193,7 +193,7 @@ class GameScene extends Phaser.Scene {
             this.player.x < -100 ||
             this.player.x > this.scale.width + 100
         ) {
-            this.triggerCrash();
+            this.gameOver();
         }
     }
 
@@ -214,7 +214,7 @@ class GameScene extends Phaser.Scene {
         }
     }
 
-    connectProbe() {
+    attachToOrbit() {
         this.player.setVelocity(0, 0);
         this.trailEmitter.stop();
         this.burstEmitter.explode(35, this.player.x, this.player.y);
@@ -267,7 +267,7 @@ class GameScene extends Phaser.Scene {
         this.orbitGraphics.strokeCircle(this.nextOrbit.x, this.nextOrbit.y, this.nextOrbit.radius);
     }
 
-    triggerCrash() {
+    gameOver() {
         this.playerState = PlayerState.DEAD;
         this.player.setVelocity(0, 0);
         this.trailEmitter.stop();
@@ -334,4 +334,4 @@ window.addEventListener('resize', () => {
     game.scale.resize(window.innerWidth, window.innerHeight);
 });
 
-document.getElementById("game-version").innerText = GAME_VERSION;
+document.getElementById("game-version").innerText = SPINHOOK_VERSION;
