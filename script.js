@@ -1,6 +1,7 @@
 const SPINHOOK_VERSION = "v0.1";
 let currentScore = 0;
-let sessionHighScore = Number(localStorage.getItem("spinhookBestScore")) || 0;
+let currentUsername = "";
+let playStartTime = null;
 
 const UI = {
     updateScores: (score) => {
