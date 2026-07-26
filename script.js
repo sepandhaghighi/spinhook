@@ -435,4 +435,35 @@ window.addEventListener('resize', () => {
     game.scale.resize(window.innerWidth, window.innerHeight);
 });
 
+function renderLeaderboard(){
+
+    const list = document.getElementById("leaderboard-list");
+    const ranking = Leaderboard.getRanking();
+
+    if(ranking.length === 0){
+        list.innerHTML = "NO RECORDS";
+        return;
+    }
+
+    list.innerHTML = ranking.map((player,index)=>{
+        const hours = Math.floor(player.totalPlayTime / 3600);
+        const minutes = Math.floor((player.totalPlayTime % 3600) /60);
+        return `<div class="mb-5">
+            #${index+1}
+            ${player.username}
+            <br>
+            SCORE:
+            ${player.bestRecord}
+            <br>
+            PLAYS:
+            ${player.numberOfPlays}
+            <br>
+            TIME:
+            ${hours}h ${minutes}m
+            </div>`;
+
+
+    }).join("");
+}
+
 document.getElementById("game-version").innerText = SPINHOOK_VERSION;
