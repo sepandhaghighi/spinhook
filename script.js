@@ -114,8 +114,8 @@ const UI = {
             document.getElementById('menu-overlay').classList.add('flex');
         } else if (screenId === 'gameover-overlay') {
             document.getElementById('final-score').innerText = currentScore;
-            document.getElementById('record-score').innerText = sessionHighScore;
-            
+            const player = Leaderboard.getPlayer(currentUsername);
+            document.getElementById('record-score').innerText = player ? player.bestRecord : 0;
             const goOverlay = document.getElementById('gameover-overlay');
             goOverlay.classList.remove('hidden');
             goOverlay.classList.add('flex');
