@@ -406,7 +406,19 @@ const config = {
 const game = new Phaser.Game(config);
 
 
-document.getElementById('play-btn').addEventListener('click', () => {
+document.getElementById('play-btn').addEventListener('click', ()=>{
+    let username = document.getElementById("username-input").value.trim();
+
+    username = Leaderboard.sanitizeUsername(username);
+
+    if(!username){
+        alert("Please enter username");
+        return;
+    }
+
+    currentUsername = username;
+    playStartTime = Leaderboard.startSession(username);
+
     UI.showScreen('hud-overlay');
 });
 
