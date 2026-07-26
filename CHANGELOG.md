@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - Version label
+- Leaderboard
 ### Changed
 - `connectProbe` method renamed to `attachToOrbit`
 - `triggerCrash` method renamed to `gameOver`
