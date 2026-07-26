@@ -25,7 +25,7 @@ Easy to learn but difficult to master, SpinHook rewards precision, rhythm, and q
 - Procedurally generated orbit layouts
 - Increasing difficulty
 - Mobile and desktop support
-- Session & personal best score tracking
+- Leaderboard
 - Smooth camera movement
 - Neon-inspired visuals
 - Built with Phaser 3
