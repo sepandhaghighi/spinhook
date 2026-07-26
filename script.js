@@ -97,11 +97,8 @@ const UI = {
     updateScores: (score) => {
         currentScore = score;
         document.getElementById('hud-score').innerText = score;
-        if (score > sessionHighScore) {
-            sessionHighScore = score;
-            localStorage.setItem("spinhookBestScore", sessionHighScore);
-        }
-        document.getElementById("hud-high-score").innerText = sessionHighScore;
+        const player = Leaderboard.getPlayer(currentUsername);
+        document.getElementById("hud-high-score").innerText = player ? player.bestRecord : 0;
     },
     showScreen: (screenId) => {
         ['menu-overlay', 'gameover-overlay', 'hud-overlay'].forEach(id => {
