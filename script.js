@@ -480,15 +480,15 @@ function renderLeaderboard() {
 
                     <div>${rank}</div>
 
-                    <div class="truncate">
+                    <div class="truncate text-white/70 font-bold">
                         ${player.username}
                     </div>
 
-                    <div class="text-center text-[#ff006e] font-bold">
+                    <div class="text-center text-white/70 font-bold">
                         ${player.bestRecord}
                     </div>
 
-                    <div class="text-center">
+                    <div class="text-center text-white/70 font-bold">
                         ${player.numberOfPlays}
                     </div>
 
