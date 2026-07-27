@@ -1,16 +1,104 @@
 const SPINHOOK_VERSION = "v0.1";
 let currentScore = 0;
-let sessionHighScore = Number(localStorage.getItem("spinhookBestScore")) || 0;
+let currentUsername = "";
+let playStartTime = null;
+
+const Leaderboard = {
+
+    STORAGE_KEY: "spinhookLeaderboard",
+
+
+    getAll() {
+        return JSON.parse(localStorage.getItem(this.STORAGE_KEY)) || [];
+    },
+
+
+    save(data) {
+        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
+    },
+
+
+    sanitizeUsername(username) {
+        return username.replace(/[^a-zA-Z0-9]/g, "").substring(0, 12);
+    },
+
+
+    getPlayer(username) {
+        return this.getAll().find(player => player.username === username);
+    },
+
+
+    startSession(username) {
+        let players = this.getAll();
+
+        let player =
+            players.find(p => p.username === username);
+
+        if (!player) {
+            player = {
+
+                username: username,
+
+                numberOfPlays: 0,
+
+                bestRecord: 0,
+
+                totalPlayTime: 0,
+
+                bestRecordDate: null
+            };
+
+            players.push(player);
+
+        }
+
+        player.numberOfPlays++;
+
+        this.save(players);
+
+        return Date.now();
+
+    },
+
+
+    finishSession(
+        username,
+        score,
+        startTime
+    ) {
+
+        let players = this.getAll();
+        let player =
+            players.find(p => p.username === username);
+
+        if (!player)
+            return;
+
+        const sessionTime =Math.floor((Date.now() - startTime) / 1000);
+
+        player.totalPlayTime += sessionTime;
+
+        if (score > player.bestRecord) {
+            player.bestRecord = score;
+            player.bestRecordDate =
+                new Date().toISOString();
+        }
+        this.save(players);
+    },
+
+
+    getRanking() {
+        return this.getAll().sort((a, b) => b.bestRecord - a.bestRecord);
+    }
+
+};
 
 const UI = {
     updateScores: (score) => {
         currentScore = score;
         document.getElementById('hud-score').innerText = score;
-        if (score > sessionHighScore) {
-            sessionHighScore = score;
-            localStorage.setItem("spinhookBestScore", sessionHighScore);
-        }
-        document.getElementById("hud-high-score").innerText = sessionHighScore;
+        const player = Leaderboard.getPlayer(currentUsername);
+        document.getElementById("hud-high-score").innerText = player ? player.bestRecord : 0;
     },
     showScreen: (screenId) => {
         ['menu-overlay', 'gameover-overlay', 'hud-overlay'].forEach(id => {
@@ -26,8 +114,8 @@ const UI = {
             document.getElementById('menu-overlay').classList.add('flex');
         } else if (screenId === 'gameover-overlay') {
             document.getElementById('final-score').innerText = currentScore;
-            document.getElementById('record-score').innerText = sessionHighScore;
-            
+            const player = Leaderboard.getPlayer(currentUsername);
+            document.getElementById('record-score').innerText = player ? player.bestRecord : 0;
             const goOverlay = document.getElementById('gameover-overlay');
             goOverlay.classList.remove('hidden');
             goOverlay.classList.add('flex');
@@ -268,6 +356,7 @@ class GameScene extends Phaser.Scene {
     }
 
     gameOver() {
+        Leaderboard.finishSession(currentUsername, this.score, playStartTime);
         this.playerState = PlayerState.DEAD;
         this.player.setVelocity(0, 0);
         this.trailEmitter.stop();
@@ -318,7 +407,19 @@ const config = {
 const game = new Phaser.Game(config);
 
 
-document.getElementById('play-btn').addEventListener('click', () => {
+document.getElementById('play-btn').addEventListener('click', ()=>{
+    let username = document.getElementById("username-input").value.trim();
+
+    username = Leaderboard.sanitizeUsername(username);
+
+    if(!username){
+        alert("Please enter username");
+        return;
+    }
+
+    currentUsername = username;
+    playStartTime = Leaderboard.startSession(username);
+
     UI.showScreen('hud-overlay');
 });
 
@@ -332,6 +433,50 @@ document.getElementById('retry-btn').addEventListener('click', () => {
 
 window.addEventListener('resize', () => {
     game.scale.resize(window.innerWidth, window.innerHeight);
+});
+
+function renderLeaderboard(){
+
+    const list = document.getElementById("leaderboard-list");
+    const ranking = Leaderboard.getRanking();
+
+    if(ranking.length === 0){
+        list.innerHTML = "NO RECORDS";
+        return;
+    }
+
+    list.innerHTML = ranking.map((player,index)=>{
+        const hours = Math.floor(player.totalPlayTime / 3600);
+        const minutes = Math.floor((player.totalPlayTime % 3600) /60);
+        return `<div class="mb-5">
+            #${index+1}
+            ${player.username}
+            <br>
+            SCORE:
+            ${player.bestRecord}
+            <br>
+            PLAYS:
+            ${player.numberOfPlays}
+            <br>
+            TIME:
+            ${hours}h ${minutes}m
+            </div>`;
+
+
+    }).join("");
+}
+
+document.getElementById("leaderboard-btn").addEventListener("click", ()=>{
+    renderLeaderboard();
+    const overlay = document.getElementById("leaderboard-overlay");
+    overlay.classList.remove("hidden");
+    overlay.classList.add("flex");
+});
+
+document.getElementById("close-leaderboard").addEventListener("click",()=>{
+    const overlay = document.getElementById("leaderboard-overlay");
+    overlay.classList.add("hidden");
+    overlay.classList.remove("flex");
 });
 
 document.getElementById("game-version").innerText = SPINHOOK_VERSION;
