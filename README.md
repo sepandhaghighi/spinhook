@@ -59,7 +59,8 @@ http://localhost:8000
 
 - [Phaser](https://phaser.io/) v4.2.1
 - [Tailwind CSS](https://tailwindcss.com/) v3.4.17
-- Google Fonts
+- [Orbitron Font](https://fonts.google.com/specimen/Orbitron)
+- [Share Tech Mono Font](https://fonts.google.com/specimen/Share+Tech+Mono)
 
 ## Issues & Bug Reports
 
