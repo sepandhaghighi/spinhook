@@ -99,13 +99,13 @@
         class="absolute bottom-4 right-4 text-[10px] md:text-xs text-white/35 arcade-font tracking-widest pointer-events-none z-30">
         v0.1
     </div>
-    <div id="leaderboard-overlay" class="absolute inset-0 bg-[#03030d]/90 hidden flex-col justify-center items-center p-6 text-center z-40">
+    <div id="leaderboard-overlay" class="absolute inset-0 bg-[#03030d]/90 hidden flex-col justify-center items-center p-6 z-40">
         <h2 class="text-3xl font-black text-[#00ffcc] mb-6">
-            LEADERBOARD
+            🏆 LEADERBOARD
         </h2>
-        <div id="leaderboard-list" class="text-white arcade-font">
+        <div id="leaderboard-list" class="w-full max-w-2xl max-h-[60vh] md:max-h-[55vh] overflow-y-auto rounded-lg border border-[#1a1a3a] bg-[#080816]/60 p-4">
         </div>
-        <button id="close-leaderboard" class="mt-6 border border-[#00ffcc] px-6 py-2 text-[#00ffcc]">
+        <button id="close-leaderboard" class="w-64 mt-6 px-8 py-3 border border-[#00ffcc] text-[#00ffcc] font-bold tracking-widest rounded-lg hover:bg-[#00ffcc]/10 hover:shadow-[0_0_18px_rgba(0,255,204,0.2)] transition transform hover:scale-105 active:scale-95 uppercase text-sm">
             BACK
         </button>
     </div>

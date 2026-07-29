@@ -435,35 +435,73 @@ window.addEventListener('resize', () => {
     game.scale.resize(window.innerWidth, window.innerHeight);
 });
 
-function renderLeaderboard(){
+function renderLeaderboard() {
 
     const list = document.getElementById("leaderboard-list");
+
     const ranking = Leaderboard.getRanking();
 
-    if(ranking.length === 0){
-        list.innerHTML = "NO RECORDS";
+    if (ranking.length === 0) {
+        list.innerHTML = `
+            <div class="text-center text-white/50 arcade-font py-8">
+                NO RECORDS YET
+            </div>
+        `;
         return;
     }
 
-    list.innerHTML = ranking.map((player,index)=>{
-        const hours = Math.floor(player.totalPlayTime / 3600);
-        const minutes = Math.floor((player.totalPlayTime % 3600) /60);
-        return `<div class="mb-5">
-            #${index+1}
-            ${player.username}
-            <br>
-            SCORE:
-            ${player.bestRecord}
-            <br>
-            PLAYS:
-            ${player.numberOfPlays}
-            <br>
-            TIME:
-            ${hours}h ${minutes}m
-            </div>`;
+    list.innerHTML = `
 
+        <div class="grid grid-cols-5 gap-2 pb-3 mb-3 border-b border-[#1a1a3a] text-[#00ffcc] font-bold arcade-font text-xs uppercase sticky top-0 bg-[#080816]/95 backdrop-blur">
 
-    }).join("");
+            <div>Rank</div>
+            <div>Player</div>
+            <div class="text-center">Best</div>
+            <div class="text-center">Plays</div>
+            <div class="text-center">Time</div>
+
+        </div>
+
+        ${ranking.map((player, index) => {
+
+            const hours = Math.floor(player.totalPlayTime / 3600);
+
+            const minutes =Math.floor((player.totalPlayTime % 3600) / 60);
+
+            const rank =
+                index === 0 ? "🥇" :
+                index === 1 ? "🥈" :
+                index === 2 ? "🥉" :
+                `#${index + 1}`;
+
+            return `
+
+                <div class="grid grid-cols-5 gap-2 py-2 border-b border-[#1a1a3a]/50 items-center arcade-font text-sm">
+
+                    <div>${rank}</div>
+
+                    <div class="truncate text-white/70 font-bold">
+                        ${player.username}
+                    </div>
+
+                    <div class="text-center text-white/70 font-bold">
+                        ${player.bestRecord}
+                    </div>
+
+                    <div class="text-center text-white/70 font-bold">
+                        ${player.numberOfPlays}
+                    </div>
+
+                    <div class="text-center text-white/70">
+                        ${hours}h ${minutes}m
+                    </div>
+
+                </div>
+
+            `;
+
+        }).join("")}
+    `;
 }
 
 document.getElementById("leaderboard-btn").addEventListener("click", ()=>{
