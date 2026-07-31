@@ -423,11 +423,6 @@ document.getElementById('play-btn').addEventListener('click', ()=>{
     UI.updateScores(0);
 
     UI.showScreen('hud-overlay');
-
-    const activeScene = game.scene.getScene("GameScene");
-    if(activeScene){
-        activeScene.scene.restart();
-    }
 });
 
 document.getElementById('retry-btn').addEventListener('click', () => {
