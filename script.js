@@ -408,6 +408,7 @@ const game = new Phaser.Game(config);
 
 
 document.getElementById('play-btn').addEventListener('click', ()=>{
+
     let username = document.getElementById("username-input").value.trim();
 
     username = Leaderboard.sanitizeUsername(username);
@@ -418,9 +419,17 @@ document.getElementById('play-btn').addEventListener('click', ()=>{
     }
 
     currentUsername = username;
+
     playStartTime = Leaderboard.startSession(username);
 
+    UI.updateScores(0);
+
     UI.showScreen('hud-overlay');
+
+    const activeScene = game.scene.getScene("GameScene");
+    if(activeScene){
+        activeScene.scene.restart();
+    }
 });
 
 document.getElementById('retry-btn').addEventListener('click', () => {
