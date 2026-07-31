@@ -408,7 +408,6 @@ const game = new Phaser.Game(config);
 
 
 document.getElementById('play-btn').addEventListener('click', ()=>{
-
     let username = document.getElementById("username-input").value.trim();
 
     username = Leaderboard.sanitizeUsername(username);
@@ -419,7 +418,6 @@ document.getElementById('play-btn').addEventListener('click', ()=>{
     }
 
     currentUsername = username;
-
     playStartTime = Leaderboard.startSession(username);
 
     UI.updateScores(0);
