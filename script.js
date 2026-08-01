@@ -420,6 +420,8 @@ document.getElementById('play-btn').addEventListener('click', ()=>{
     currentUsername = username;
     playStartTime = Leaderboard.startSession(username);
 
+    UI.updateScores(0);
+
     UI.showScreen('hud-overlay');
 });
 
