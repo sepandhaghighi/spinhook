@@ -19,7 +19,7 @@ const Leaderboard = {
 
 
     sanitizeUsername(username) {
-        return username.replace(/[^a-zA-Z0-9]/g, "").substring(0, 12);
+        return username.trim().toUpperCase().replace(/[^A-Z0-9]/g, "").substring(0, 12);
     },
 
 
