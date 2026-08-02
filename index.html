@@ -32,6 +32,14 @@
     <div class="relative w-screen h-screen overflow-hidden bg-[#050510]">
         <div id="game-container" class="w-full h-full"></div>
         <div id="hud-overlay" class="absolute top-0 left-0 w-full p-6 flex justify-between items-start pointer-events-none hidden z-10">
+            <div class="absolute top-6 left-1/2 -translate-x-1/2 flex flex-col items-center">
+                <span class="text-xs text-white/50 uppercase tracking-widest arcade-font">
+                    Player
+                </span>
+                <span id="hud-player" class="text-xl font-bold text-white tracking-wider arcade-font">
+                    -
+                </span>
+            </div>
             <div class="flex flex-col">
                 <span class="text-xs text-[#00ffcc]/60 uppercase tracking-widest arcade-font">Active Score</span>
                 <span id="hud-score" class="text-3xl font-black text-[#00ffcc] neon-glow-cyan">0</span>
