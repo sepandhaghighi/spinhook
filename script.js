@@ -418,6 +418,7 @@ document.getElementById('play-btn').addEventListener('click', ()=>{
     }
 
     currentUsername = username;
+    document.getElementById("hud-player").innerText = currentUsername;
     playStartTime = Leaderboard.startSession(username);
 
     UI.updateScores(0);
