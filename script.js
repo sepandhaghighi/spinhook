@@ -481,7 +481,7 @@ function renderLeaderboard() {
 
                 <div class="grid grid-cols-5 gap-2 py-2 border-b border-[#1a1a3a]/50 items-center arcade-font text-sm">
 
-                    <div>${rank}</div>
+                    <div class="truncate text-white/70 font-bold">${rank}</div>
 
                     <div class="truncate text-white/70 font-bold">
                         ${player.username}
