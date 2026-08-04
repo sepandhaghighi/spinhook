@@ -345,12 +345,8 @@ class GameScene extends Phaser.Scene {
 
     drawActivePathGuides() {
         this.orbitGraphics.clear();
-
-        
         this.orbitGraphics.lineStyle(2, 0x1d1d40, 0.6);
         this.orbitGraphics.strokeCircle(this.currentOrbit.x, this.currentOrbit.y, this.currentOrbit.radius);
-
-        
         this.orbitGraphics.lineStyle(3, 0x00ffcc, 0.85);
         this.orbitGraphics.strokeCircle(this.nextOrbit.x, this.nextOrbit.y, this.nextOrbit.radius);
     }
@@ -481,7 +477,7 @@ function renderLeaderboard() {
 
                 <div class="grid grid-cols-5 gap-2 py-2 border-b border-[#1a1a3a]/50 items-center arcade-font text-sm">
 
-                    <div>${rank}</div>
+                    <div class="truncate text-white/70 font-bold">${rank}</div>
 
                     <div class="truncate text-white/70 font-bold">
                         ${player.username}
