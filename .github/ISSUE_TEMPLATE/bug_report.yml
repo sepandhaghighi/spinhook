@@ -85,6 +85,7 @@ body:
       label: SpinHook version
       description: Which version of SpinHook are you using?
       options:
+        - SpinHook 0.2
         - SpinHook 0.1
       default: 0
     validations:

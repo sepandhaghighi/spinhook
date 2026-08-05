@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.2] - 2026-08-05
 ### Added
 - Version label
 - Leaderboard
@@ -26,5 +27,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - SEO metadata and PWA support
 
 
-[Unreleased]: https://github.com/sepandhaghighi/spinhook/compare/v0.1...main
+[Unreleased]: https://github.com/sepandhaghighi/spinhook/compare/v0.2...main
+[0.2]: https://github.com/sepandhaghighi/spinhook/compare/v0.1...v0.2
 [0.1]: https://github.com/sepandhaghighi/spinhook/compare/65df667...v0.1
