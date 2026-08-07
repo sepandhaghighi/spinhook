@@ -308,6 +308,7 @@ class GameScene extends Phaser.Scene {
     }
 
     attachToOrbit() {
+        this.sound.play('attach', {volume: 0.4});
         this.player.setVelocity(0, 0);
         this.trailEmitter.stop();
         this.burstEmitter.explode(35, this.player.x, this.player.y);
@@ -357,6 +358,7 @@ class GameScene extends Phaser.Scene {
     }
 
     gameOver() {
+        this.sound.play('death', {volume: 0.5});
         Leaderboard.finishSession(currentUsername, this.score, playStartTime);
         this.playerState = PlayerState.DEAD;
         this.player.setVelocity(0, 0);
