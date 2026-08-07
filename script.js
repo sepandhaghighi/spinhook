@@ -128,6 +128,11 @@ class BootScene extends Phaser.Scene {
         super({ key: 'BootScene' });
     }
 
+    preload() {
+        this.load.audio('attach', 'assets/sounds/attach.mp3');
+        this.load.audio('death', 'assets/sounds/death.mp3');
+    }
+
     create() {
         this.generateProceduralAssets();
         this.scene.start('GameScene');
