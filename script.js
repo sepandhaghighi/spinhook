@@ -3,6 +3,18 @@ let currentScore = 0;
 let currentUsername = "";
 let playStartTime = null;
 
+const DOM = {
+    playButton: document.getElementById("play-btn"),
+    retryButton: document.getElementById("retry-btn"),
+    username: document.getElementById("username-input"),
+    hudScore: document.getElementById("hud-score"),
+    hudBest: document.getElementById("hud-high-score"),
+    hudPlayer: document.getElementById("hud-player"),
+    finalScore: document.getElementById("final-score"),
+    recordScore: document.getElementById("record-score"),
+    leaderboard: document.getElementById("leaderboard-list")
+};
+
 const Leaderboard = {
 
     STORAGE_KEY: "spinhookLeaderboard",
