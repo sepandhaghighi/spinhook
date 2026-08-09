@@ -6,13 +6,20 @@ let playStartTime = null;
 const DOM = {
     playButton: document.getElementById("play-btn"),
     retryButton: document.getElementById("retry-btn"),
+    leaderboardButton: document.getElementById("leaderboard-btn"),
+    closeLeaderboardButton: document.getElementById("close-leaderboard"),
     username: document.getElementById("username-input"),
     hudScore: document.getElementById("hud-score"),
-    hudBest: document.getElementById("hud-high-score"),
+    hudHighScore: document.getElementById("hud-high-score"),
     hudPlayer: document.getElementById("hud-player"),
     finalScore: document.getElementById("final-score"),
     recordScore: document.getElementById("record-score"),
-    leaderboard: document.getElementById("leaderboard-list")
+    leaderboard: document.getElementById("leaderboard-list"),
+    gameVersion: document.getElementById("game-version"),
+    leaderboardOverlay: document.getElementById("leaderboard-overlay"),
+    gameoverOverlay: document.getElementById("gameover-overlay"),
+    menuOverlay: document.getElementById("menu-overlay"),
+    hudOverlay: document.getElementById("hud-overlay"),
 };
 
 const Leaderboard = {
@@ -108,9 +115,9 @@ const Leaderboard = {
 const UI = {
     updateScores: (score) => {
         currentScore = score;
-        document.getElementById('hud-score').innerText = score;
+        DOM.hudScore.innerText = score;
         const player = Leaderboard.getPlayer(currentUsername);
-        document.getElementById("hud-high-score").innerText = player ? player.bestRecord : 0;
+        DOM.hudHighScore.innerText = player ? player.bestRecord : 0;
     },
     showScreen: (screenId) => {
         ['menu-overlay', 'gameover-overlay', 'hud-overlay'].forEach(id => {
@@ -120,15 +127,15 @@ const UI = {
         });
 
         if (screenId === 'hud-overlay') {
-            document.getElementById('hud-overlay').classList.remove('hidden');
+            DOM.hudOverlay.classList.remove('hidden');
         } else if (screenId === 'menu-overlay') {
-            document.getElementById('menu-overlay').classList.remove('hidden');
-            document.getElementById('menu-overlay').classList.add('flex');
+            DOM.menuOverlay.classList.remove('hidden');
+            DOM.menuOverlay.classList.add('flex');
         } else if (screenId === 'gameover-overlay') {
-            document.getElementById('final-score').innerText = currentScore;
+            DOM.finalScore.innerText = currentScore;
             const player = Leaderboard.getPlayer(currentUsername);
-            document.getElementById('record-score').innerText = player ? player.bestRecord : 0;
-            const goOverlay = document.getElementById('gameover-overlay');
+            DOM.recordScore.innerText = player ? player.bestRecord : 0;
+            const goOverlay = DOM.gameoverOverlay;
             goOverlay.classList.remove('hidden');
             goOverlay.classList.add('flex');
         }
@@ -422,8 +429,8 @@ const config = {
 const game = new Phaser.Game(config);
 
 
-document.getElementById('play-btn').addEventListener('click', ()=>{
-    let username = document.getElementById("username-input").value.trim();
+DOM.playButton.addEventListener('click', ()=>{
+    let username = DOM.username.value.trim();
 
     username = Leaderboard.sanitizeUsername(username);
 
@@ -433,7 +440,7 @@ document.getElementById('play-btn').addEventListener('click', ()=>{
     }
 
     currentUsername = username;
-    document.getElementById("hud-player").innerText = currentUsername;
+    DOM.hudPlayer.innerText = currentUsername;
     playStartTime = Leaderboard.startSession(username);
 
     UI.updateScores(0);
@@ -441,7 +448,7 @@ document.getElementById('play-btn').addEventListener('click', ()=>{
     UI.showScreen('hud-overlay');
 });
 
-document.getElementById('retry-btn').addEventListener('click', () => {
+DOM.retryButton.addEventListener('click', () => {
     UI.showScreen('hud-overlay');
     const activeScene = game.scene.getScene('GameScene');
     if (activeScene) {
@@ -455,7 +462,7 @@ window.addEventListener('resize', () => {
 
 function renderLeaderboard() {
 
-    const list = document.getElementById("leaderboard-list");
+    const list = DOM.leaderboard;
 
     const ranking = Leaderboard.getRanking();
 
@@ -522,17 +529,17 @@ function renderLeaderboard() {
     `;
 }
 
-document.getElementById("leaderboard-btn").addEventListener("click", ()=>{
+DOM.leaderboardButton.addEventListener("click", ()=>{
     renderLeaderboard();
-    const overlay = document.getElementById("leaderboard-overlay");
+    const overlay = DOM.leaderboardOverlay;
     overlay.classList.remove("hidden");
     overlay.classList.add("flex");
 });
 
-document.getElementById("close-leaderboard").addEventListener("click",()=>{
-    const overlay = document.getElementById("leaderboard-overlay");
+DOM.closeLeaderboardButton.addEventListener("click",()=>{
+    const overlay = DOM.leaderboardOverlay;
     overlay.classList.add("hidden");
     overlay.classList.remove("flex");
 });
 
-document.getElementById("game-version").innerText = SPINHOOK_VERSION;
+DOM.gameVersion.innerText = SPINHOOK_VERSION;
