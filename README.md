@@ -46,13 +46,13 @@ To test SpinHook locally, you can use [Ghps](https://github.com/sepandhaghighi/g
 Run:
 
 ```console
-ghps --port 8000
+ghps --port 5004
 ```
 
 Then open your browser and visit:
 
 ```console
-http://localhost:8000
+http://localhost:5004
 ```
 
 ## Dependencies

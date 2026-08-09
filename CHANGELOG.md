@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Attach sound effect
 - Death sound effect
+### Changed
+- `README.md` updated
 ## [0.2] - 2026-08-05
 ### Added
 - Version label
