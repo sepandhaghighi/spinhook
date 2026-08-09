@@ -128,6 +128,11 @@ class BootScene extends Phaser.Scene {
         super({ key: 'BootScene' });
     }
 
+    preload() {
+        this.load.audio('attach', 'assets/sounds/attach.wav');
+        this.load.audio('death', 'assets/sounds/death.wav');
+    }
+
     create() {
         this.generateProceduralAssets();
         this.scene.start('GameScene');
@@ -303,6 +308,7 @@ class GameScene extends Phaser.Scene {
     }
 
     attachToOrbit() {
+        this.sound.play('attach', {volume: 0.4});
         this.player.setVelocity(0, 0);
         this.trailEmitter.stop();
         this.burstEmitter.explode(35, this.player.x, this.player.y);
@@ -352,6 +358,7 @@ class GameScene extends Phaser.Scene {
     }
 
     gameOver() {
+        this.sound.play('death', {volume: 0.5});
         Leaderboard.finishSession(currentUsername, this.score, playStartTime);
         this.playerState = PlayerState.DEAD;
         this.player.setVelocity(0, 0);
