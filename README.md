@@ -22,7 +22,7 @@ Easy to learn but difficult to master, SpinHook rewards precision, rhythm, and q
 <table>
 	<tr> 
 		<td align="center">Code Quality</td>
-		<td align="center"></td>
+		<td align="center"><a href="https://www.codefactor.io/repository/github/sepandhaghighi/spinhook"><img src="https://www.codefactor.io/repository/github/sepandhaghighi/spinhook/badge" alt="CodeFactor"></a></td>
 		<td align="center"></td>
 	</tr>
 </table>
