@@ -18,6 +18,15 @@ Easy to learn but difficult to master, SpinHook rewards precision, rhythm, and q
 
 🌐 **Live Game:** [https://spinhook.ir](https://spinhook.ir)
 
+
+<table>
+	<tr> 
+		<td align="center">Code Quality</td>
+		<td align="center"></td>
+		<td align="center"></td>
+	</tr>
+</table>
+
 ## Features
 
 - Endless arcade gameplay
