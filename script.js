@@ -368,6 +368,22 @@ class GameScene extends Phaser.Scene {
         );
     }
 
+    generateNextOrbit() {
+
+        const difficultyRatio = Math.min(this.score / 25, 1);
+
+        return {
+
+            x: Phaser.Math.Between(150, this.scale.width - 150),
+
+            y: this.currentOrbit.y - Phaser.Math.Between(180, 270),
+
+            radius: Phaser.Math.Between(45, 90 - (35 * difficultyRatio)),
+
+            rotationSpeed: (Math.random() > 0.5 ? 1 : -1) * (3.2 + (2.8 * difficultyRatio))
+        };
+    }
+
     drawActivePathGuides() {
         this.orbitGraphics.clear();
         this.orbitGraphics.lineStyle(2, 0x1d1d40, 0.6);
