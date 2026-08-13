@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `GameScene.generateNextOrbit` method
 ### Changed
 - `README.md` updated
-- `GameScene.attachToOrbit` updated
+- `GameScene.attachToOrbit` method updated
 ## [0.2] - 2026-08-05
 ### Added
 - Version label
