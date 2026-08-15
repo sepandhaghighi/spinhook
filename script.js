@@ -326,6 +326,22 @@ class GameScene extends Phaser.Scene {
         }
     }
 
+    generateNextOrbit() {
+
+        const difficultyRatio = Math.min(this.score / 25, 1);
+
+        return {
+
+            x: Phaser.Math.Between(150, this.scale.width - 150),
+
+            y: this.currentOrbit.y - Phaser.Math.Between(180, 270),
+
+            radius: Phaser.Math.Between(45, 90 - (35 * difficultyRatio)),
+
+            rotationSpeed: (Math.random() > 0.5 ? 1 : -1) * (3.2 + (2.8 * difficultyRatio))
+        };
+    }
+
     attachToOrbit() {
         this.sound.play('attach', {volume: 0.4});
         this.player.setVelocity(0, 0);
@@ -344,17 +360,7 @@ class GameScene extends Phaser.Scene {
         );
 
         
-        const difficultyRatio = Math.min(this.score / 25, 1);
-        const nextY = this.currentOrbit.y - Phaser.Math.Between(180, 270);
-        const radius = Phaser.Math.Between(45, 90 - (35 * difficultyRatio));
-        const speed = (Math.random() > 0.5 ? 1 : -1) * (3.2 + (2.8 * difficultyRatio));
-
-        this.nextOrbit = {
-            x: Phaser.Math.Between(150, this.scale.width - 150),
-            y: nextY,
-            radius: radius,
-            rotationSpeed: speed
-        };
+        this.nextOrbit = this.generateNextOrbit();
 
         this.playerState = PlayerState.ORBITING;
         this.drawActivePathGuides();
