@@ -9,6 +9,7 @@ const DOM = {
     leaderboardButton: document.getElementById("leaderboard-btn"),
     closeLeaderboardButton: document.getElementById("close-leaderboard"),
     username: document.getElementById("username-input"),
+    hudRecord: document.getElementById("hud-record"),
     hudScore: document.getElementById("hud-score"),
     hudHighScore: document.getElementById("hud-high-score"),
     hudPlayer: document.getElementById("hud-player"),
@@ -117,7 +118,9 @@ const UI = {
         currentScore = score;
         DOM.hudScore.innerText = score;
         const player = Leaderboard.getPlayer(currentUsername);
-        DOM.hudHighScore.innerText = player ? player.bestRecord : 0;
+        const best = player ? player.bestRecord : 0;
+        DOM.hudHighScore.innerText = best;
+        DOM.hudRecord.classList.toggle("hidden", score <= best);
     },
     showScreen: (screenId) => {
         ['menu-overlay', 'gameover-overlay', 'hud-overlay'].forEach(id => {

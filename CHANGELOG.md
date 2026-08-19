@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Attach sound effect
 - Death sound effect
+- "New Record" indicator
 - `GameScene.generateNextOrbit` method
 ### Changed
 - `README.md` updated
