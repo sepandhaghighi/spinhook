@@ -194,6 +194,17 @@ class GameScene extends Phaser.Scene {
         super({ key: 'GameScene' });
     }
 
+    playSound(key, config = {}) {
+        try {
+            if (!this.cache.audio.exists(key)) {
+                return;
+            }
+            this.sound.play(key, config);
+        } catch (error) {
+            console.warn(`Could not play sound "${key}":`, error);
+        }
+    }
+
     create() {
 
         this.orbitGraphics = this.add.graphics();
