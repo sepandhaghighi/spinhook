@@ -151,6 +151,12 @@ class BootScene extends Phaser.Scene {
     }
 
     preload() {
+        this.load.on('loaderror', (file) => {
+            if (file.key === 'attach' || file.key === 'death') {
+                console.warn(`Sound could not be loaded: ${file.key}`);
+            }
+        });
+
         this.load.audio('attach', 'assets/sounds/attach.wav');
         this.load.audio('death', 'assets/sounds/death.wav');
     }
