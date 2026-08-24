@@ -151,6 +151,12 @@ class BootScene extends Phaser.Scene {
     }
 
     preload() {
+        this.load.on('loaderror', (file) => {
+            if (file.key === 'attach' || file.key === 'death') {
+                console.warn(`Sound could not be loaded: ${file.key}`);
+            }
+        });
+
         this.load.audio('attach', 'assets/sounds/attach.wav');
         this.load.audio('death', 'assets/sounds/death.wav');
     }
@@ -192,6 +198,17 @@ class BootScene extends Phaser.Scene {
 class GameScene extends Phaser.Scene {
     constructor() {
         super({ key: 'GameScene' });
+    }
+
+    playSound(key, config = {}) {
+        try {
+            if (!this.cache.audio.exists(key)) {
+                return;
+            }
+            this.sound.play(key, config);
+        } catch (error) {
+            console.warn(`Could not play sound "${key}":`, error);
+        }
     }
 
     create() {
@@ -346,7 +363,7 @@ class GameScene extends Phaser.Scene {
     }
 
     attachToOrbit() {
-        this.sound.play('attach', {volume: 0.4});
+        this.playSound('attach', { volume: 0.4 });
         this.player.setVelocity(0, 0);
         this.trailEmitter.stop();
         this.burstEmitter.explode(35, this.player.x, this.player.y);
@@ -386,7 +403,7 @@ class GameScene extends Phaser.Scene {
     }
 
     gameOver() {
-        this.sound.play('death', {volume: 0.5});
+        this.playSound('death', { volume: 0.5 });
         Leaderboard.finishSession(currentUsername, this.score, playStartTime);
         this.playerState = PlayerState.DEAD;
         this.player.setVelocity(0, 0);
