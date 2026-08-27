@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.3] - 2026-08-27
 ### Added
 - Attach sound effect
 - Death sound effect
@@ -36,6 +37,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - SEO metadata and PWA support
 
 
-[Unreleased]: https://github.com/sepandhaghighi/spinhook/compare/v0.2...main
+[Unreleased]: https://github.com/sepandhaghighi/spinhook/compare/v0.3...main
+[0.3]: https://github.com/sepandhaghighi/spinhook/compare/v0.2...v0.3
 [0.2]: https://github.com/sepandhaghighi/spinhook/compare/v0.1...v0.2
 [0.1]: https://github.com/sepandhaghighi/spinhook/compare/65df667...v0.1
