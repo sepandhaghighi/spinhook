@@ -8,6 +8,7 @@ const DOM = {
     retryButton: document.getElementById("retry-btn"),
     leaderboardButton: document.getElementById("leaderboard-btn"),
     closeLeaderboardButton: document.getElementById("close-leaderboard"),
+    soundButton: document.getElementById("sound-btn"),
     username: document.getElementById("username-input"),
     hudRecord: document.getElementById("hud-record"),
     hudScore: document.getElementById("hud-score"),
@@ -21,6 +22,42 @@ const DOM = {
     gameoverOverlay: document.getElementById("gameover-overlay"),
     menuOverlay: document.getElementById("menu-overlay"),
     hudOverlay: document.getElementById("hud-overlay"),
+};
+
+
+const SoundSettings = {
+    STORAGE_KEY: "spinhookSoundEnabled",
+
+    enabled: true,
+
+    init() {
+        const storedValue = localStorage.getItem(this.STORAGE_KEY);
+
+        this.enabled = storedValue === null
+            ? true
+            : storedValue === "true";
+
+        this.updateButton();
+    },
+
+    toggle() {
+        this.enabled = !this.enabled;
+        this.save();
+        this.updateButton();
+    },
+
+    save() {
+        localStorage.setItem(
+            this.STORAGE_KEY,
+            String(this.enabled)
+        );
+    },
+
+    updateButton() {
+        DOM.soundButton.innerText = this.enabled
+            ? "🔊 SOUND ON"
+            : "🔇 SOUND OFF";
+    }
 };
 
 const Leaderboard = {
