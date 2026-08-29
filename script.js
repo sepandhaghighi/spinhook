@@ -241,10 +241,16 @@ class GameScene extends Phaser.Scene {
 
     playSound(key, config = {}) {
         try {
+            if (!SoundSettings.enabled) {
+                return;
+            }
+
             if (!this.cache.audio.exists(key)) {
                 return;
             }
+
             this.sound.play(key, config);
+
         } catch (error) {
             console.warn(`Could not play sound "${key}":`, error);
         }
