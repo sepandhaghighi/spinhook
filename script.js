@@ -60,6 +60,8 @@ const SoundSettings = {
     }
 };
 
+SoundSettings.init();
+
 const Leaderboard = {
 
     STORAGE_KEY: "spinhookLeaderboard",
@@ -603,6 +605,10 @@ DOM.closeLeaderboardButton.addEventListener("click",()=>{
     const overlay = DOM.leaderboardOverlay;
     overlay.classList.add("hidden");
     overlay.classList.remove("flex");
+});
+
+DOM.soundButton.addEventListener("click", () => {
+    SoundSettings.toggle();
 });
 
 DOM.gameVersion.innerText = SPINHOOK_VERSION;
