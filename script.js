@@ -5,6 +5,7 @@ let playStartTime = null;
 
 const DOM = {
     playButton: document.getElementById("play-btn"),
+    pauseButton: document.getElementById("pause-btn"),
     retryButton: document.getElementById("retry-btn"),
     leaderboardButton: document.getElementById("leaderboard-btn"),
     closeLeaderboardButton: document.getElementById("close-leaderboard"),
@@ -257,7 +258,7 @@ class GameScene extends Phaser.Scene {
     }
 
     create() {
-
+        this.isPaused = false;
         this.orbitGraphics = this.add.graphics();
         
         this.setupParticleEngines();
@@ -465,6 +466,22 @@ class GameScene extends Phaser.Scene {
         this.cameras.main.setViewport(0, 0, width, height);
         if (this.playerState === PlayerState.ORBITING && this.currentOrbit) {
             this.drawActivePathGuides();
+        }
+    }
+
+    togglePause() {
+        if (this.playerState === PlayerState.DEAD) {
+            return;
+        }
+
+        this.isPaused = !this.isPaused;
+
+        if (this.isPaused) {
+            this.scene.pause();
+            DOM.pauseButton.innerText = "▶ RESUME";
+        } else {
+            this.scene.resume();
+            DOM.pauseButton.innerText = "⏸ PAUSE";
         }
     }
 }
