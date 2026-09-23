@@ -532,7 +532,7 @@ DOM.playButton.addEventListener('click', ()=>{
     playStartTime = Leaderboard.startSession(username);
 
     UI.updateScores(0);
-
+    DOM.pauseButton.innerText = "⏸ PAUSE";
     UI.showScreen('hud-overlay');
 });
 
