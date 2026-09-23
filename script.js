@@ -634,4 +634,11 @@ DOM.soundButton.addEventListener("click", () => {
     SoundSettings.toggle();
 });
 
+DOM.pauseButton.addEventListener("click", () => {
+    const activeScene = game.scene.getScene("GameScene");
+    if (activeScene) {
+        activeScene.togglePause();
+    }
+});
+
 DOM.gameVersion.innerText = SPINHOOK_VERSION;
