@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - Sound button
+- Pause button
+- `GameScene.togglePause` method
 ### Changed
 - `GameScene.playSound` method updated
 ## [0.3] - 2026-08-27

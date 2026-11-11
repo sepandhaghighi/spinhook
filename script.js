@@ -5,6 +5,7 @@ let playStartTime = null;
 
 const DOM = {
     playButton: document.getElementById("play-btn"),
+    pauseButton: document.getElementById("pause-btn"),
     retryButton: document.getElementById("retry-btn"),
     leaderboardButton: document.getElementById("leaderboard-btn"),
     closeLeaderboardButton: document.getElementById("close-leaderboard"),
@@ -257,7 +258,7 @@ class GameScene extends Phaser.Scene {
     }
 
     create() {
-
+        this.isPaused = false;
         this.orbitGraphics = this.add.graphics();
         
         this.setupParticleEngines();
@@ -467,6 +468,22 @@ class GameScene extends Phaser.Scene {
             this.drawActivePathGuides();
         }
     }
+
+    togglePause() {
+        if (this.playerState === PlayerState.DEAD) {
+            return;
+        }
+
+        this.isPaused = !this.isPaused;
+
+        if (this.isPaused) {
+            this.scene.pause();
+            DOM.pauseButton.innerText = "▶ RESUME";
+        } else {
+            this.scene.resume();
+            DOM.pauseButton.innerText = "⏸ PAUSE";
+        }
+    }
 }
 
 
@@ -515,7 +532,7 @@ DOM.playButton.addEventListener('click', ()=>{
     playStartTime = Leaderboard.startSession(username);
 
     UI.updateScores(0);
-
+    DOM.pauseButton.innerText = "⏸ PAUSE";
     UI.showScreen('hud-overlay');
 });
 
@@ -615,6 +632,13 @@ DOM.closeLeaderboardButton.addEventListener("click",()=>{
 
 DOM.soundButton.addEventListener("click", () => {
     SoundSettings.toggle();
+});
+
+DOM.pauseButton.addEventListener("click", () => {
+    const activeScene = game.scene.getScene("GameScene");
+    if (activeScene) {
+        activeScene.togglePause();
+    }
 });
 
 DOM.gameVersion.innerText = SPINHOOK_VERSION;
