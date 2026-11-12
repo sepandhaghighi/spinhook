@@ -535,6 +535,7 @@ DOM.playButton.addEventListener('click', ()=>{
     currentUsername = username;
     DOM.hudPlayer.innerText = currentUsername;
     playStartTime = Leaderboard.startSession(username);
+    pauseStartTime = null;
 
     UI.updateScores(0);
     DOM.pauseButton.innerText = "⏸ PAUSE";
@@ -542,6 +543,7 @@ DOM.playButton.addEventListener('click', ()=>{
 });
 
 DOM.retryButton.addEventListener('click', () => {
+    pauseStartTime = null;
     UI.showScreen('hud-overlay');
     const activeScene = game.scene.getScene('GameScene');
     if (activeScene) {
