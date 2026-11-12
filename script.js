@@ -2,6 +2,7 @@ const SPINHOOK_VERSION = "v0.3";
 let currentScore = 0;
 let currentUsername = "";
 let playStartTime = null;
+let pauseStartTime = null;
 
 const DOM = {
     playButton: document.getElementById("play-btn"),
