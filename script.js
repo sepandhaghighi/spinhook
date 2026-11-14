@@ -484,7 +484,6 @@ class GameScene extends Phaser.Scene {
         } else {
             playStartTime += Date.now() - pauseStartTime;
             pauseStartTime = null;
-
             this.scene.resume();
             DOM.pauseButton.innerText = "⏸ PAUSE";
         }
