@@ -9,8 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Sound button
 - Pause button
 - `GameScene.togglePause` method
+- `.ghps` config
 ### Changed
 - `GameScene.playSound` method updated
+- `README.md` updated
 ## [0.3] - 2026-08-27
 ### Added
 - Attach sound effect
