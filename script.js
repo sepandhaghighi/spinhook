@@ -2,6 +2,7 @@ const SPINHOOK_VERSION = "v0.3";
 let currentScore = 0;
 let currentUsername = "";
 let playStartTime = null;
+let pauseStartTime = null;
 
 const DOM = {
     playButton: document.getElementById("play-btn"),
@@ -477,9 +478,12 @@ class GameScene extends Phaser.Scene {
         this.isPaused = !this.isPaused;
 
         if (this.isPaused) {
+            pauseStartTime = Date.now();
             this.scene.pause();
             DOM.pauseButton.innerText = "▶ RESUME";
         } else {
+            playStartTime += Date.now() - pauseStartTime;
+            pauseStartTime = null;
             this.scene.resume();
             DOM.pauseButton.innerText = "⏸ PAUSE";
         }
@@ -530,6 +534,7 @@ DOM.playButton.addEventListener('click', ()=>{
     currentUsername = username;
     DOM.hudPlayer.innerText = currentUsername;
     playStartTime = Leaderboard.startSession(username);
+    pauseStartTime = null;
 
     UI.updateScores(0);
     DOM.pauseButton.innerText = "⏸ PAUSE";
@@ -537,6 +542,7 @@ DOM.playButton.addEventListener('click', ()=>{
 });
 
 DOM.retryButton.addEventListener('click', () => {
+    pauseStartTime = null;
     UI.showScreen('hud-overlay');
     const activeScene = game.scene.getScene('GameScene');
     if (activeScene) {
