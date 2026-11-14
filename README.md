@@ -52,10 +52,16 @@ Easy to learn but difficult to master, SpinHook rewards precision, rhythm, and q
 
 To test SpinHook locally, you can use [Ghps](https://github.com/sepandhaghighi/ghps) a minimal GitHub Pages simulator written in pure Python.
 
+Install Ghps:
+
+```console
+pip install "ghps>=0.8"
+```
+
 Run:
 
 ```console
-ghps --port 5004
+ghps
 ```
 
 Then open your browser and visit:
