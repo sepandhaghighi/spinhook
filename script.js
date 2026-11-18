@@ -1,4 +1,4 @@
-const SPINHOOK_VERSION = "v0.3";
+const SPINHOOK_VERSION = "v0.4";
 let currentScore = 0;
 let currentUsername = "";
 let playStartTime = null;
